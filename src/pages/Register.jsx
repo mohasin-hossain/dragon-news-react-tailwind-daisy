@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 import Navbar from "./Shared/Navbar/Navbar";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { updateProfile } from "firebase/auth";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
+  const [error, setError] = useState("");
   const { createUser } = useContext(AuthContext);
 
   const handleRegister = (e) => {
@@ -16,6 +17,18 @@ const Register = () => {
     const photoURL = form.get("photoURL");
     const email = form.get("email");
     const password = form.get("password");
+
+    // Clearing previous error messages
+    setError("");
+
+    // Validations
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters long!");
+      return;
+    } else if (!/[A-Z]/.test(password)) {
+      setError("Password must have at least 1 capital letter!");
+      return;
+    }
 
     // Create a New user account
     createUser(email, password)
@@ -34,9 +47,16 @@ const Register = () => {
 
         // Displaying success toast
         toast("New User Account Created Successfully!");
+
+        // Clear Form fields
+        e.target.reset();
       })
       .catch((error) => {
-        console.log(error);
+        if (error.code === "auth/email-already-in-use") {
+          setError(
+            "There is already a user account with this email. Please Login or if you have forgot your password try resetting your password from the Login page."
+          );
+        }
       });
   };
 
@@ -97,6 +117,11 @@ const Register = () => {
               required
             />
           </div>
+          {error && (
+            <p className="font-semibold text-red-600 text-center mt-2">
+              {error}
+            </p>
+          )}
           <div className="form-control mt-6">
             <button className="btn btn-primary">Register</button>
           </div>

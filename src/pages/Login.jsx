@@ -1,11 +1,12 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "./Shared/Navbar/Navbar";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
+  const [error, setError] = useState("");
   const { signIn } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
@@ -15,6 +16,18 @@ const Login = () => {
     const form = new FormData(e.currentTarget);
     const email = form.get("email");
     const password = form.get("password");
+
+    // Clearing previous errors messages
+    setError("");
+
+    // Validations
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters long!");
+      return;
+    } else if (!/[A-Z]/.test(password)) {
+      setError("Password must have at least 1 capital letter!");
+      return;
+    }
 
     // Sign in user
     signIn(email, password)
@@ -27,7 +40,11 @@ const Login = () => {
         }, 1);
       })
       .catch((error) => {
-        console.log(error.message);
+        if (error.code === "auth/invalid-credential") {
+          setError(
+            "Incorrect Email or Password. If you forgot your password, please try resetting it."
+          );
+        }
       });
   };
 
@@ -69,6 +86,11 @@ const Login = () => {
               </a>
             </label>
           </div>
+          {error && (
+            <p className="font-semibold text-red-600 text-center mt-2">
+              {error}
+            </p>
+          )}
           <div className="form-control mt-6">
             <button className="btn btn-primary">Login</button>
           </div>
