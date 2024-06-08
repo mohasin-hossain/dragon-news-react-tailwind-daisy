@@ -10,7 +10,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 const Register = () => {
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const { createUser } = useContext(AuthContext);
+  const { createUser, setLoading } = useContext(AuthContext);
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -41,6 +41,7 @@ const Register = () => {
           photoURL: photoURL,
         })
           .then(() => {
+            setLoading(true);
             // Profile updated!
           })
           .catch((error) => {
