@@ -8,15 +8,15 @@ const NewsCard = ({ news }) => {
       <figure>
         <img className="w-full" src={image_url} alt="Shoes" />
       </figure>
-      <div className="card-body">
-        <h2 className="card-title">{title}</h2>
-        {details.length > 200 ? (
-          <p>
-            {details.slice(0, 200)} {"  "}
-             <Link className="link link-secondary font-bold" to={`/news/${_id}`}>Read More...</Link>
+      <div className="card-body p-4">
+        <h2 className="card-title text-base">{title}</h2>
+        {details.length > 100 ? (
+          <p className="text-xs">
+            {details.slice(0, 100)} <br />
+             <Link className="link link-primary font-bold" to={`/news/${_id}`}>Read More...</Link>
           </p>
         ) : (
-          <p>{details}</p>
+          <p className="text-xs">{details}</p>
         )}
       </div>
     </div>
