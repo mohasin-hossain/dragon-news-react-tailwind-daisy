@@ -2,10 +2,13 @@ import { Link } from "react-router-dom";
 import Navbar from "./Shared/Navbar/Navbar";
 
 const Login = () => {
+    
   const handleLogin = (e) => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
-    console.log(form.get("email"));
+    const email = form.get('email');
+    const password = form.get('password');
+
   };
 
   return (
