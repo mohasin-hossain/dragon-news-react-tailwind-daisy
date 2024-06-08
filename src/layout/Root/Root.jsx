@@ -1,11 +1,13 @@
 import { Outlet } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 const Root = () => {
-    return (
-        <div className="max-w-6xl mx-auto font-poppins">
-            <Outlet></Outlet>
-        </div>
-    );
+  return (
+    <div className="max-w-6xl mx-auto font-poppins">
+      <ToastContainer position="bottom-right" />
+      <Outlet></Outlet>
+    </div>
+  );
 };
 
 export default Root;

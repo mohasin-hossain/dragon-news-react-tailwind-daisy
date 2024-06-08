@@ -61,9 +61,16 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{navLinks}</ul>
       </div>
       <div className="navbar-end">
-        <div tabIndex={0} className="flex items-center font-semibold mr-4 bg-base-200 p-1 text-xs rounded-full">
+        <div
+          tabIndex={0}
+          className="flex items-center font-semibold mr-4 bg-base-200 p-1 text-xs rounded-full"
+        >
           <div className="w-10">
-            <img className="rounded-full p-1" alt="User" src={user ? user.photoURL : userDefaultPic} />
+            <img
+              className="rounded-full p-1"
+              alt="User"
+              src={user ? user.photoURL : userDefaultPic}
+            />
           </div>
           <span>{user?.displayName}</span>
         </div>

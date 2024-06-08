@@ -3,6 +3,8 @@ import Navbar from "./Shared/Navbar/Navbar";
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { updateProfile } from "firebase/auth";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
   const { createUser } = useContext(AuthContext);
@@ -18,7 +20,6 @@ const Register = () => {
     // Create a New user account
     createUser(email, password)
       .then((result) => {
-
         // Adding Name and Photo
         updateProfile(result.user, {
           displayName: name,
@@ -30,6 +31,9 @@ const Register = () => {
           .catch((error) => {
             // An error occurred
           });
+
+        // Displaying success toast
+        toast("New User Account Created Successfully!");
       })
       .catch((error) => {
         console.log(error);

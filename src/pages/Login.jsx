@@ -2,6 +2,8 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "./Shared/Navbar/Navbar";
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
@@ -17,9 +19,12 @@ const Login = () => {
     // Sign in user
     signIn(email, password)
       .then((result) => {
-        console.log(result.user);
         // Navigating user after login
         navigate(location?.state ? location.state : "/");
+        // Displaying login successfull toast
+        setTimeout(() => {
+          toast(`Welcome back ${result.user.displayName}`);
+        }, 1);
       })
       .catch((error) => {
         console.log(error.message);
