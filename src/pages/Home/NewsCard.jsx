@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 
 const NewsCard = ({ news }) => {
-  const { title, details, thumbnail_url, _id } = news;
+  const { title, details, image_url, _id } = news;
 
   return (
     <div className="card bg-base-100 shadow-xl mb-4">
       <figure>
-        <img className="w-1/2" src={thumbnail_url} alt="Shoes" />
+        <img className="w-full" src={image_url} alt="Shoes" />
       </figure>
       <div className="card-body">
         <h2 className="card-title">{title}</h2>
