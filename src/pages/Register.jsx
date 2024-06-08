@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "./Shared/Navbar/Navbar";
 import { useContext, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
-import { updateProfile } from "firebase/auth";
+import { sendEmailVerification, updateProfile } from "firebase/auth";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -11,6 +11,7 @@ const Register = () => {
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const { createUser, setLoading } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -48,8 +49,18 @@ const Register = () => {
             // An error occurred
           });
 
+        // Sending verification email
+        sendEmailVerification(result.user).then(() => {
+          // Email verification sent!
+        });
+
+        // Navigating to Login Page
+        navigate("/login");
+
         // Displaying success toast
-        toast("New User Account Created Successfully!");
+        toast(
+          "We've sent a verification email. Please verify your email to login."
+        );
 
         // Clear Form fields
         e.target.reset();

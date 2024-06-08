@@ -21,7 +21,7 @@ const Navbar = () => {
       <li>
         <NavLink to="/career">Career</NavLink>
       </li>
-      {!user && (
+      {!user?.emailVerified && (
         <li>
           <NavLink to="/Login">Login</NavLink>
         </li>
@@ -69,12 +69,12 @@ const Navbar = () => {
             <img
               className="rounded-full p-1"
               alt="User"
-              src={user ? user.photoURL : userDefaultPic}
+              src={user?.emailVerified ? user.photoURL : userDefaultPic}
             />
           </div>
-          <span>{user?.displayName}</span>
+          <span>{user?.emailVerified && user?.displayName}</span>
         </div>
-        {user ? (
+        {user?.emailVerified ? (
           <button onClick={handleSignOut} className="btn">
             SignOut
           </button>

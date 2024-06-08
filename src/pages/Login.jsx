@@ -5,11 +5,12 @@ import { AuthContext } from "../providers/AuthProvider";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { sendEmailVerification } from "firebase/auth";
 
 const Login = () => {
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const { signIn } = useContext(AuthContext);
+  const { signIn, setUser } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -34,12 +35,22 @@ const Login = () => {
     // Sign in user
     signIn(email, password)
       .then((result) => {
-        // Navigating user after login
-        navigate(location?.state ? location.state : "/");
-        // Displaying login successfull toast
-        setTimeout(() => {
+        if (!result.user.emailVerified) {
+          // Sending verification email
+          sendEmailVerification(result.user).then(() => {
+            // Email verification sent!
+          });
+          toast(
+            "We've sent a verification email. Please verify your email address to Login!"
+          );
+          return;
+        } else {
+          setUser(result.user);
+          // Navigating user after login
+          navigate(location?.state ? location.state : "/");
+          // Displaying login successfull toast
           toast(`Welcome back ${result.user.displayName}`);
-        }, 1);
+        }
       })
       .catch((error) => {
         if (error.code === "auth/invalid-credential") {
