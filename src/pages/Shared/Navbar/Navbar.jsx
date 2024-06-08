@@ -21,9 +21,11 @@ const Navbar = () => {
       <li>
         <NavLink to="/career">Career</NavLink>
       </li>
-      <li>
-        <NavLink to="/Login">Login</NavLink>
-      </li>
+      {!user && (
+        <li>
+          <NavLink to="/Login">Login</NavLink>
+        </li>
+      )}
     </>
   );
 
@@ -69,7 +71,9 @@ const Navbar = () => {
           </div>
         </div>
         {user ? (
-          <button onClick={handleSignOut} className="btn">SignOut</button>
+          <button onClick={handleSignOut} className="btn">
+            SignOut
+          </button>
         ) : (
           <Link to="/login">
             <button className="btn">Login</button>
