@@ -2,27 +2,38 @@ import { Link } from "react-router-dom";
 import Navbar from "./Shared/Navbar/Navbar";
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
+import { updateProfile } from "firebase/auth";
 
 const Register = () => {
-    const {createUser} = useContext(AuthContext);
+  const { createUser } = useContext(AuthContext);
 
   const handleRegister = (e) => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
-    const name = form.get('name');
-    const photoURL = form.get('photoURL');
-    const email = form.get('email');
-    const password = form.get('password');
+    const name = form.get("name");
+    const photoURL = form.get("photoURL");
+    const email = form.get("email");
+    const password = form.get("password");
 
     // Create a New user account
     createUser(email, password)
-        .then(result => {
-            console.log(result.user)
-        })
-        .catch(error => {
-            console.log(error)
-        })
+      .then((result) => {
 
+        // Adding Name and Photo
+        updateProfile(result.user, {
+          displayName: name,
+          photoURL: photoURL,
+        })
+          .then(() => {
+            // Profile updated!
+          })
+          .catch((error) => {
+            // An error occurred
+          });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -81,14 +92,9 @@ const Register = () => {
               className="input input-bordered"
               required
             />
-            <label className="label">
-              <a href="#" className="label-text-alt link link-hover">
-                Forgot password?
-              </a>
-            </label>
           </div>
           <div className="form-control mt-6">
-            <button className="btn btn-primary">Login</button>
+            <button className="btn btn-primary">Register</button>
           </div>
         </form>
         <p className="text-center">
