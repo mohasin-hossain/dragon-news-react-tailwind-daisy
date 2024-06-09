@@ -10,7 +10,6 @@ const News = () => {
   const { id } = useParams();
   const news = useLoaderData();
   const findNews = news.find((aNews) => aNews._id === id);
-  console.log(findNews);
   const { details, title, image_url, total_view } = findNews;
   const { img, name, published_date } = findNews.author;
   const navigate = useNavigate();

@@ -10,7 +10,6 @@ import { Helmet } from "react-helmet-async";
 
 const Home = () => {
   const news = useLoaderData();
-
   const [displayNews, setDisplayNews] = useState(news);
 
   const handleFilterNews = (id) => {

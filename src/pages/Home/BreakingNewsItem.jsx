@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const BreakingNewsItem = ({ bNews }) => {
   return (
@@ -12,3 +13,7 @@ const BreakingNewsItem = ({ bNews }) => {
 };
 
 export default BreakingNewsItem;
+
+BreakingNewsItem.propTypes = {
+  bNews: PropTypes.object.isRequired,
+};

@@ -46,7 +46,7 @@ const Register = () => {
             setLoading(true);
             // Profile updated!
           })
-          .catch((error) => {
+          .catch(() => {
             // An error occurred
           });
 

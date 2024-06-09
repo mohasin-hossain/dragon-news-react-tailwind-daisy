@@ -2,8 +2,9 @@ import { FaEye } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
+import PropTypes from "prop-types";
 
-const NewsCard = ({ news, displayNews }) => {
+const NewsCard = ({ news }) => {
   const { title, details, image_url, _id, total_view } = news;
   const rating = news.rating.number;
 
@@ -35,3 +36,7 @@ const NewsCard = ({ news, displayNews }) => {
 };
 
 export default NewsCard;
+
+NewsCard.propTypes = {
+  news: PropTypes.object.isRequired,
+};

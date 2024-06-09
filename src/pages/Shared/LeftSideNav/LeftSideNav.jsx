@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
-const LeftSideNav = ({handleFilterNews}) => {
+const LeftSideNav = ({ handleFilterNews }) => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
@@ -18,7 +18,6 @@ const LeftSideNav = ({handleFilterNews}) => {
           key={category.id}
           onClick={() => handleFilterNews(category.id)}
           className="block cursor-pointer text-base font-semibold p-2 hover:bg-base-300"
-          // to={`/category/${category.id}`}
         >
           {category.name}
         </li>
@@ -28,3 +27,7 @@ const LeftSideNav = ({handleFilterNews}) => {
 };
 
 export default LeftSideNav;
+
+LeftSideNav.propTypes = {
+  handleFilterNews: PropTypes.func.isRequired,
+};

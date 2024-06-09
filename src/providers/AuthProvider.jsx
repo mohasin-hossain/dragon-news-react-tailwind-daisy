@@ -10,6 +10,7 @@ import { createContext, useEffect, useState } from "react";
 import { getAuth } from "firebase/auth";
 import app from "../firebase/firebase.config";
 import { GoogleAuthProvider } from "firebase/auth";
+import PropTypes from "prop-types";
 
 export const AuthContext = createContext(null);
 
@@ -70,8 +71,14 @@ const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={authInfo}>
+      {children}
+    </AuthContext.Provider>
   );
 };
 
 export default AuthProvider;
+
+AuthProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
