@@ -10,16 +10,27 @@ import qzone2 from "../../../assets/qZone2.png";
 import qzone3 from "../../../assets/qZone3.png";
 import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
+import { toast } from "react-toastify";
 
 const RightSideNav = () => {
-  const { user } = useContext(AuthContext);
+  const { user, signInWithGoogle } = useContext(AuthContext);
+
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then((result) => {
+        toast(`Welcome to Dragon News! ${result.user.displayName}`);
+      })
+      .catch((error) => {
+        toast(error.message);
+      });
+  };
 
   return (
     <div>
       {!user && (
         <div className="p-4 space-y-3">
           <h2 className="text-base">Login With</h2>
-          <button className="btn btn-outline mb-2">
+          <button onClick={handleGoogleSignIn} className="btn btn-outline mb-2">
             <FaGoogle />
             Login With Google
           </button>
