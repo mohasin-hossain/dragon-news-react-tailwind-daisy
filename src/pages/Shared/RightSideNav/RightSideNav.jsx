@@ -1,16 +1,10 @@
-import {
-  FaFacebook,
-  FaGithub,
-  FaGoogle,
-  FaInstagram,
-  FaTwitter,
-} from "react-icons/fa";
+import { useContext } from "react";
+import { FaFacebook, FaGoogle, FaInstagram, FaTwitter } from "react-icons/fa";
+import { toast } from "react-toastify";
 import qzone1 from "../../../assets/qZone1.png";
 import qzone2 from "../../../assets/qZone2.png";
 import qzone3 from "../../../assets/qZone3.png";
-import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
-import { toast } from "react-toastify";
 
 const RightSideNav = () => {
   const { user, signInWithGoogle } = useContext(AuthContext);
