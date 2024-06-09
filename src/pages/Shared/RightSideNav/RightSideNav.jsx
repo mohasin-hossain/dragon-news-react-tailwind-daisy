@@ -31,7 +31,7 @@ const RightSideNav = () => {
       )}
 
       <div className="p-4">
-        <h2 className="text-2xl mb-2">Find Us On</h2>
+        <h2 className="text-2xl mb-4">Find Us On</h2>
         <a className="flex items-center p-4 border rounded-t-lg" href="">
           <FaFacebook className="mr-2" />
           Facebook
@@ -46,8 +46,8 @@ const RightSideNav = () => {
         </a>
       </div>
 
-      <div className="p-4">
-        <h2 className="text-2xl mb-2">Q-Zone</h2>
+      <h2 className="text-2xl p-4">Q-Zone</h2>
+      <div className="p-1 grid grid-cols-2">
         <img src={qzone1} alt="" />
         <img src={qzone2} alt="" />
         <img src={qzone3} alt="" />

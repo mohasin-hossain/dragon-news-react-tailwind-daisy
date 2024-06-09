@@ -23,7 +23,7 @@ const Home = () => {
             <NewsCard key={aNews._id} news={aNews}></NewsCard>
           ))}
         </div>
-        <div className="col-span-4 md:col-span-1">
+        <div className="col-span-4 md:col-span-1 md:sticky md:top-20 md:self-start">
           <RightSideNav></RightSideNav>
         </div>
       </div>
