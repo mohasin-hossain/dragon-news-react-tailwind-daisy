@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "./Shared/Navbar/Navbar";
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -10,10 +10,12 @@ import { sendEmailVerification } from "firebase/auth";
 const Login = () => {
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const { signIn, setUser } = useContext(AuthContext);
+  const { signIn, setUser, resetPassword } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
+  const emailRef = useRef(null);
 
+  // Login User
   const handleLogin = (e) => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
@@ -61,6 +63,35 @@ const Login = () => {
       });
   };
 
+  // Reset password
+  const handleResetPassword = (e) => {
+    e.preventDefault();
+    const email = emailRef.current.value;
+
+    // Clearing previous errors
+    setError("");
+
+    // Validations
+    if (!email) {
+      setError("Please write your Email to get an password reset mail!");
+      return;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setError("Plese use a valid Email!");
+      return;
+    }
+
+    resetPassword(email)
+      .then((result) => {
+        console.log(result);
+        toast(
+          "Password Reset email sent successfully. Please check your email."
+        );
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+
   return (
     <div>
       <Navbar></Navbar>
@@ -79,6 +110,7 @@ const Login = () => {
               placeholder="Email"
               name="email"
               className="input input-bordered"
+              ref={emailRef}
               required
             />
           </div>
@@ -100,11 +132,6 @@ const Login = () => {
               {showPassword ? <FaEyeSlash /> : <FaEye />}
             </span>
           </div>
-          <label className="label">
-            <a href="#" className="label-text-alt link link-hover">
-              Forgot password?
-            </a>
-          </label>
           {error && (
             <p className="font-semibold text-red-600 text-center mt-2">
               {error}
@@ -114,6 +141,12 @@ const Login = () => {
             <button className="btn btn-primary">Login</button>
           </div>
         </form>
+        <button
+          onClick={handleResetPassword}
+          className="label-text-alt link link-hover font-semibold mx-auto block mb-2 text-base text-red-400"
+        >
+          Forgot password?
+        </button>
         <p className="text-center">
           Do not have an Account? Please{" "}
           <Link className="link link-primary font-bold" to="/register">
