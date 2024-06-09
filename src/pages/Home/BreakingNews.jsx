@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Marquee from "react-fast-marquee";
-import { Link } from "react-router-dom";
 import BreakingNewsItem from "./BreakingNewsItem";
 
 const BreakingNews = () => {
@@ -13,7 +12,7 @@ const BreakingNews = () => {
   }, []);
 
   return (
-    <div className="flex my-4">
+    <div className="flex flex-col sm:flex-row my-4">
       <button className="btn rounded-none tracking-widest btn-primary italic uppercase">
         Breaking News
       </button>
