@@ -72,7 +72,7 @@ const Navbar = () => {
               src={user?.emailVerified ? user.photoURL : userDefaultPic}
             />
           </div>
-          <span>{user?.emailVerified && user?.displayName}</span>
+          <span className="hidden md:block">{user?.emailVerified && user?.displayName}</span>
         </div>
         {user?.emailVerified ? (
           <button onClick={handleSignOut} className="btn">

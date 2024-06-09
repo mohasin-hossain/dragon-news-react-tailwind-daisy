@@ -34,10 +34,6 @@ const RightSideNav = () => {
             <FaGoogle />
             Login With Google
           </button>
-          <button className="btn btn-outline">
-            <FaGithub />
-            Login With GitHub
-          </button>
         </div>
       )}
 

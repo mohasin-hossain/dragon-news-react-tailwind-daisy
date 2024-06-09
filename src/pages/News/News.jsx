@@ -52,7 +52,7 @@ const News = () => {
             <IoArrowBack />
           </button>
         </div>
-        <div className="md:col-span-1 md:sticky md:top-20 md:self-start">
+        <div className="md:sticky md:top-20 md:self-start col-span-4 md:col-span-1 ">
           <RightSideNav></RightSideNav>
         </div>
       </div>

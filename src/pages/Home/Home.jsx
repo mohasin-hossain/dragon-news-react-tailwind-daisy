@@ -18,7 +18,7 @@ const Home = () => {
         <div className="col-span-4 md:col-span-1 md:sticky md:top-20 md:self-start">
           <LeftSideNav></LeftSideNav>
         </div>
-        <div className="col-span-4 md:col-span-2 grid md:grid-cols-2 gap-4">
+        <div className="col-span-4 md:col-span-2 grid lg:grid-cols-2 gap-4">
           {news.map((aNews) => (
             <NewsCard key={aNews._id} news={aNews}></NewsCard>
           ))}
@@ -27,6 +27,7 @@ const Home = () => {
           <RightSideNav></RightSideNav>
         </div>
       </div>
+      <hr className="my-8" />
     </div>
   );
 };
