@@ -75,7 +75,7 @@ const Navbar = () => {
           <span className="hidden md:block">{user?.emailVerified && user?.displayName}</span>
         </div>
         {user?.emailVerified ? (
-          <button onClick={handleSignOut} className="btn">
+          <button onClick={handleSignOut} className="btn rounded-none">
             SignOut
           </button>
         ) : (
