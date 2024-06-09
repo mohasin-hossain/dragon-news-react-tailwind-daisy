@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const NewsCard = ({ news }) => {
+const NewsCard = ({ news, displayNews }) => {
   const { title, details, image_url, _id } = news;
 
   return (
@@ -13,7 +13,9 @@ const NewsCard = ({ news }) => {
         {details.length > 100 ? (
           <p className="text-xs">
             {details.slice(0, 100)} <br />
-             <Link className="link link-primary font-bold" to={`/news/${_id}`}>Read More...</Link>
+            <Link className="link link-primary font-bold" to={`/news/${_id}`}>
+              Read More...
+            </Link>
           </p>
         ) : (
           <p className="text-xs">{details}</p>

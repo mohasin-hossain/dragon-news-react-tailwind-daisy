@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const LeftSideNav = () => {
+const LeftSideNav = ({handleFilterNews}) => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
@@ -14,13 +14,14 @@ const LeftSideNav = () => {
     <div className="border p-4 shadow-lg">
       <h1 className="text-2xl mb-4 border p-2 text-center">All Categories</h1>
       {categories.map((category) => (
-        <Link
+        <li
           key={category.id}
-          className="block text-base font-semibold p-2 hover:bg-base-300"
-          to={`/category/${category.id}`}
+          onClick={() => handleFilterNews(category.id)}
+          className="block cursor-pointer text-base font-semibold p-2 hover:bg-base-300"
+          // to={`/category/${category.id}`}
         >
           {category.name}
-        </Link>
+        </li>
       ))}
     </div>
   );

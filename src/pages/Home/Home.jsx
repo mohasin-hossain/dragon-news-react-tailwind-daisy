@@ -5,9 +5,21 @@ import Navbar from "../Shared/Navbar/Navbar";
 import RightSideNav from "../Shared/RightSideNav/RightSideNav";
 import BreakingNews from "./BreakingNews";
 import NewsCard from "./NewsCard";
+import { useState } from "react";
 
 const Home = () => {
   const news = useLoaderData();
+
+  const [displayNews, setDisplayNews] = useState(news);
+
+  const handleFilterNews = (id) => {
+    if (id === "0") {
+      setDisplayNews(news);
+    } else {
+      const filteredNews = news.filter((aNews) => aNews.category_id === id);
+      setDisplayNews(filteredNews);
+    }
+  };
 
   return (
     <div>
@@ -16,10 +28,10 @@ const Home = () => {
       <Navbar></Navbar>
       <div className="grid md:grid-cols-4 gap-8 mt-4">
         <div className="col-span-4 md:col-span-1 md:sticky md:top-20 md:self-start">
-          <LeftSideNav></LeftSideNav>
+          <LeftSideNav handleFilterNews={handleFilterNews}></LeftSideNav>
         </div>
         <div className="col-span-4 md:col-span-2 grid lg:grid-cols-2 gap-4">
-          {news.map((aNews) => (
+          {displayNews.map((aNews) => (
             <NewsCard key={aNews._id} news={aNews}></NewsCard>
           ))}
         </div>
