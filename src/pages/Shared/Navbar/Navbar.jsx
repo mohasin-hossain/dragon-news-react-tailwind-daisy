@@ -2,6 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import userDefaultPic from "../../../assets/user.png";
 import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
+import './Navbar.css'
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -30,7 +31,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar bg-base-100 sticky top-0 z-10 border-b-2">
+    <div id="header_nav" className="navbar bg-base-100 sticky top-0 z-10 border-b-2">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
