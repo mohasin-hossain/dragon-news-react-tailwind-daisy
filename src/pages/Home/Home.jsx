@@ -6,6 +6,7 @@ import RightSideNav from "../Shared/RightSideNav/RightSideNav";
 import BreakingNews from "./BreakingNews";
 import NewsCard from "./NewsCard";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
   const news = useLoaderData();
@@ -23,6 +24,9 @@ const Home = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Dragon News | Capturing the World</title>
+      </Helmet>
       <Header></Header>
       <BreakingNews></BreakingNews>
       <Navbar></Navbar>

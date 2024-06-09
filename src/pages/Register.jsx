@@ -6,6 +6,7 @@ import { sendEmailVerification, updateProfile } from "firebase/auth";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
 
 const Register = () => {
   const [error, setError] = useState("");
@@ -76,6 +77,9 @@ const Register = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Register for a new user Account</title>
+      </Helmet>
       <Navbar></Navbar>
       <div className="mb-8">
         <h1 className="text-center text-3xl mt-2">Please Register</h1>

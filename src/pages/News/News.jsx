@@ -4,6 +4,7 @@ import Navbar from "../Shared/Navbar/Navbar";
 import RightSideNav from "../Shared/RightSideNav/RightSideNav";
 import { FaEye } from "react-icons/fa";
 import { IoArrowBack } from "react-icons/io5";
+import { Helmet } from "react-helmet-async";
 
 const News = () => {
   const { id } = useParams();
@@ -20,6 +21,9 @@ const News = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>{title}</title>
+      </Helmet>
       <Header></Header>
       <Navbar></Navbar>
       <div className="grid md:grid-cols-4 gap-8">

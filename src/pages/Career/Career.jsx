@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import BreakingNews from "../Home/BreakingNews";
 import Header from "../Shared/Header/Header";
 import Navbar from "../Shared/Navbar/Navbar";
@@ -5,6 +6,9 @@ import Navbar from "../Shared/Navbar/Navbar";
 const Career = () => {
   return (
     <div>
+      <Helmet>
+        <title>Career with us</title>
+      </Helmet>
       <Header></Header>
       <BreakingNews></BreakingNews>
       <Navbar></Navbar>
@@ -24,7 +28,10 @@ const Career = () => {
         world, collaborating with a network of professionals who share your
         commitment to excellence and integrity.
       </p>
-      <h3 className="text-white font-semibold text-center uppercase bg-red-600">Unfortunately no job openings are available at the moment. Please try again later.</h3>
+      <h3 className="text-white font-semibold text-center uppercase bg-red-600">
+        Unfortunately no job openings are available at the moment. Please try
+        again later.
+      </h3>
     </div>
   );
 };

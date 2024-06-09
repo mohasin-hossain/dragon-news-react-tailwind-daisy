@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import BreakingNews from "../Home/BreakingNews";
 import Header from "../Shared/Header/Header";
 import Navbar from "../Shared/Navbar/Navbar";
@@ -5,6 +6,9 @@ import Navbar from "../Shared/Navbar/Navbar";
 const About = () => {
   return (
     <div>
+      <Helmet>
+        <title>About Us</title>
+      </Helmet>
       <Header></Header>
       <BreakingNews></BreakingNews>
       <Navbar></Navbar>

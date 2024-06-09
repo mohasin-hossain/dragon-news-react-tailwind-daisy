@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { sendEmailVerification } from "firebase/auth";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const [error, setError] = useState("");
@@ -94,6 +95,9 @@ const Login = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Login</title>
+      </Helmet>
       <Navbar></Navbar>
       <div>
         <h1 className="text-center text-3xl mt-8">Please Login</h1>
